@@ -94,6 +94,7 @@ src/
   public/
     icons/
     images/
+```
 
 ## 🧩 설치 및 초기 설정
 
@@ -173,4 +174,3 @@ yarn dlx @yarnpkg/sdks vscode
 NEXT_PUBLIC_API_BASE_URL=https://api.example.com
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_KEY
 ~~~
-```
