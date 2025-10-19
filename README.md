@@ -94,10 +94,12 @@ src/
   public/
     icons/
     images/
-🧩 설치 및 초기 설정
-1️⃣ 의존성 설치
-bash
-코드 복사
+
+## 🧩 설치 및 초기 설정
+
+### 1️⃣ 의존성 설치
+
+~~~bash
 yarn add next react react-dom
 yarn add -D typescript @types/react @types/node
 yarn add @tanstack/react-query swr zustand
@@ -106,41 +108,52 @@ yarn add -D eslint prettier eslint-config-next
 yarn add @emotion/react @emotion/styled
 yarn add -D sass
 yarn add @react-google-maps/api
-2️⃣ Tailwind 초기화
-bash
-코드 복사
-npx tailwindcss init -p
-tailwind.config.js
+~~~
 
-js
-코드 복사
+---
+
+### 2️⃣ Tailwind 초기화
+
+~~~bash
+npx tailwindcss init -p
+~~~
+
+**tailwind.config.js**
+~~~js
 module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: { extend: {} },
   plugins: [],
 }
-src/styles/tailwind.css
+~~~
 
-css
-코드 복사
+**src/styles/tailwind.css**
+~~~css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-3️⃣ Yarn Berry (PnP) 설정
-.yarnrc.yml
+~~~
 
-yml
-코드 복사
+---
+
+### 3️⃣ Yarn Berry (PnP) 설정
+
+`.yarnrc.yml`
+~~~yml
 nodeLinker: pnp
 yarnPath: .yarn/releases/yarn-berry.cjs
-IDE에서 PnP SDK 인식:
+~~~
 
-bash
-코드 복사
+IDE에서 PnP SDK 인식:
+~~~bash
 yarn dlx @yarnpkg/sdks vscode
-4️⃣ package.json 스크립트
-json
-코드 복사
+~~~
+
+---
+
+### 4️⃣ package.json 스크립트
+
+~~~json
 {
   "scripts": {
     "dev": "next dev",
@@ -150,9 +163,14 @@ json
     "typecheck": "tsc --noEmit"
   }
 }
-5️⃣ 환경변수 (.env.local)
-ini
-코드 복사
+~~~
+
+---
+
+### 5️⃣ 환경변수 (.env.local)
+
+~~~bash
 NEXT_PUBLIC_API_BASE_URL=https://api.example.com
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_KEY
+~~~
 ```
