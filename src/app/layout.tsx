@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>
+      <body cz-shortcut-listen="true">
         {/* 모바일 프레임 */}
         <div className="app-mobile-shell">
           <QueryProvider>
