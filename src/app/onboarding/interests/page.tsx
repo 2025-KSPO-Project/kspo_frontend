@@ -30,7 +30,7 @@ export default function InterestsOnboardingPage() {
   const handleComplete = () => {
     if (!isValid) return;
     // TODO: 선택한 관심 종목들 저장
-    router.push("/home"); // 또는 완료 후 이동할 경로
+    router.push("/onboarding/loading"); // 또는 완료 후 이동할 경로
   };
 
   return (
