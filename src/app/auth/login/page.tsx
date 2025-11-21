@@ -1,14 +1,25 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { setDummyLogin } from "@/hooks/useAuth";
 
 export default function LoginPage() {
   const router = useRouter();
 
   const handleNaverLogin = () => {
-    // TODO: 네이버 OAuth 연동 시 이 부분에 redirect 로직
     alert("네이버 로그인 연동 예정입니다. 일단 회원가입 화면으로 이동합니다.");
+
+    // 아직 진짜 로그인은 아니라고 가정하면 여기서는 안 찍고
+    // 온보딩 끝나고 complete에서 찍어도 됨
+    // setDummyLogin(true);
+
     router.push("/auth/signup");
+  };
+
+  const handleSkip = () => {
+    // (개발용) 바로 로그인된 상태로 간주
+    setDummyLogin(true);
+    router.push("/home");
   };
 
   return (
@@ -24,7 +35,7 @@ export default function LoginPage() {
         </button>
       </header>
 
-      {/* 중앙 로고 + 카피 (화면 가운데 쪽에 오도록 flex-1 부여) */}
+      {/* 중앙 로고 + 카피 */}
       <section className="flex-1 flex flex-col items-center justify-center text-center gap-3">
         <div className="mb-2 flex items-center gap-2">
           <span className="text-xl font-semibold text-gray-900">Carefit</span>
@@ -47,7 +58,6 @@ export default function LoginPage() {
             onClick={handleNaverLogin}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#03C75A] py-3 text-sm font-semibold text-white shadow-sm"
           >
-            {/* 네이버 로고 자리 (아이콘/이미지로 교체 예정) */}
             <span className="flex h-5 w-5 items-center justify-center rounded bg-white/90 text-xs font-bold text-[#03C75A]">
               N
             </span>
@@ -57,14 +67,13 @@ export default function LoginPage() {
           {/* (개발용) 건너뛰기 버튼 */}
           <button
             type="button"
-            onClick={() => router.push("/home")}
+            onClick={handleSkip}
             className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 text-xs text-gray-600"
           >
             (개발용) 로그인 건너뛰고 홈으로 이동
           </button>
         </div>
 
-        {/* 약관 안내 문구 */}
         <p className="text-[10px] text-center text-black">
           로그인 시 서비스 이용약관, 개인정보 처리방침에 동의하게 됩니다.
         </p>
