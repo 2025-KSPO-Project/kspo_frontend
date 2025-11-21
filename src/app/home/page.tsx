@@ -8,7 +8,7 @@ export default function HomePage() {
   const userName = "케어핏";
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       {/* 메인 콘텐츠 */}
       <main className="flex-1 px-4 pt-6 pb-24">
         {/* 상단 로고 + 사용자명 */}
