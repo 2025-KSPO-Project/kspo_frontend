@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { OnboardingProgress } from "@/app/onboarding/page";
+import { OnboardingProgress } from "@/app/onboarding/OnboardingProgress";
 
 const SPORTS_OPTIONS = [
   "축구",

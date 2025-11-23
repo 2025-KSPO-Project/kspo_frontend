@@ -16,13 +16,6 @@ export default function OnboardingLoadingPage() {
         // TODO: 시군구 / 장애유형 / 관심종목 가져오기
         // const { sigungu, disability, interests } = useSignupStore.getState();
 
-        // 예시 요청 바디
-        const body = {
-          sigungu: "강남구",
-          disability: "지체 장애",
-          interests: ["축구", "러닝"],
-        };
-
         // 실제 추천 API 호출
         await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5초 딜레이 (API 대체)
 
