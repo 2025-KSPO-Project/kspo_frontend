@@ -1,10 +1,6 @@
 "use client";
 
-type SplashScreenProps = {
-  // 필요하면 onFinish 같은 콜백도 받을 수 있음
-};
-
-export function SplashScreen(props: SplashScreenProps) {
+export function SplashScreen() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-black">
       <div className="flex flex-col items-center gap-4">
