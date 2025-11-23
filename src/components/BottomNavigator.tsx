@@ -11,7 +11,7 @@ const TABS = [
   { href: "/mypage", label: "마이페이지" },
 ];
 
-export function BottomNavigator() {
+export default function BottomNavigator() {
   const pathname = usePathname();
   const { isLoggedIn, hydrated } = useAuth();
 

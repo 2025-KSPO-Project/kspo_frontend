@@ -43,7 +43,6 @@ body {
   min-height: 100vh;
   background: #bbf7d0;
   box-shadow: 0 0 24px rgba(15, 23, 42, 0.15); /* 그림자만 살짝 */
-  border-radius: 1.5rem; /* 살짝 둥근 모서리 (웹앱 느낌) */
   overflow: hidden;
   display: flex;
   flex-direction: column;
