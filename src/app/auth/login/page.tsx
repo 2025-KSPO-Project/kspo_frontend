@@ -56,7 +56,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={handleNaverLogin}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#03C75A] py-3 text-sm font-semibold text-white shadow-sm"
+            className="flex cursor-pointer w-full items-center justify-center gap-2 rounded-xl bg-[#03C75A] py-3 text-sm font-semibold text-white shadow-sm"
           >
             <span className="flex h-5 w-5 items-center justify-center rounded bg-white/90 text-xs font-bold text-[#03C75A]">
               N
@@ -68,7 +68,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={handleSkip}
-            className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 text-xs text-gray-600"
+            className="cursor-pointer w-full rounded-xl border border-gray-200 bg-gray-50 py-3 text-xs text-gray-600"
           >
             (개발용) 로그인 건너뛰고 홈으로 이동
           </button>
