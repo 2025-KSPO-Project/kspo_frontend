@@ -15,15 +15,12 @@ export default function BottomNavigator() {
   const pathname = usePathname();
   const { isLoggedIn, hydrated } = useAuth();
 
-  // 아직 클라이언트에서 로그인 상태 못 읽었으면 아무것도 렌더 X
   if (!hydrated) return null;
-
-  // 로그인 안 되어 있으면 네비게이션 숨김
   if (!isLoggedIn) return null;
 
   return (
-    <nav className="mt-auto border-t border-gray-200 bg-white px-6 pb-4 pt-2">
-      <div className="mx-auto flex max-w-md items-center justify-between gap-4">
+    <nav className="mt-auto border-t border-gray-200 bg-white/80 backdrop-blur-md shadow-[0_-3px_10px_rgba(0,0,0,0.06)] px-6 pb-5 pt-3">
+      <div className="mx-auto flex max-w-md items-center justify-between gap-5">
         {TABS.map((tab) => {
           const isActive =
             pathname === tab.href ||
@@ -36,11 +33,18 @@ export default function BottomNavigator() {
               className="flex flex-1 items-center justify-center"
             >
               <div
-                className={`flex h-12 w-12 items-center justify-center rounded-full border text-[10px] font-medium transition-colors ${
-                  isActive
-                    ? "border-black bg-black text-white"
-                    : "border-gray-300 bg-white text-gray-700"
-                }`}
+                className={`
+                  flex h-12 w-12 items-center justify-center 
+                  rounded-2xl text-[10px] font-medium transition-all
+                  shadow-sm
+                  ${
+                    isActive
+                      ? // 활성화된 버튼
+                        "bg-black text-white shadow-[0_2px_8px_rgba(0,0,0,0.4)] scale-110"
+                      : // 비활성화 버튼
+                        "bg-white text-gray-600 border border-gray-300 shadow-[0_1px_4px_rgba(0,0,0,0.08)] active:scale-95"
+                  }
+                `}
               >
                 {tab.label}
               </div>

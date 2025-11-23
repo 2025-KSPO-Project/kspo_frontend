@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { QueryProvider } from "@/lib/queryClient";
 import { SWRProvider } from "@/lib/swr";
-import BottomNavigatorClient from "@/components/BottomNavigator.client";
+import BottomNavigator from "@/components/BottomNavigator";
 
 export const metadata: Metadata = {
   title: "KSPO Webapp",
@@ -22,8 +22,7 @@ export default function RootLayout({
             <SWRProvider>
               <div className="flex min-h-screen flex-col">
                 <main className="flex-1">{children}</main>
-                {/* CSR 전용 네비게이션 */}
-                <BottomNavigatorClient />
+                <BottomNavigator />
               </div>
             </SWRProvider>
           </QueryProvider>
