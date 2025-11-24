@@ -22,9 +22,7 @@ export default function CompetitionDetailPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
 
-  // useParams가 string | string[] 가능성이 있어서 방어적으로 처리
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
-
   const competition = competitionsMock.find((c) => c.id === id);
 
   if (!competition) {
@@ -44,25 +42,36 @@ export default function CompetitionDetailPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col ">
-      <header className="relative h-40 w-full bg-linear-to-b from-blue-500 to-blue-300 px-4 pt-4">
+    <div className="flex min-h-screen flex-col">
+      {/* 상단 배경 + 뒤로가기 버튼 */}
+      <header className="relative h-40 w-full overflow-hidden px-4 pt-4">
+        {/* 배경 이미지 */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url("/images/demo-competition-header.png")',
+          }}
+        />
+        {/* 리스트 페이지와 동일한 위치의 뒤로가기 버튼 */}
         <button
           type="button"
           onClick={() => router.back()}
-          className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm"
+          className="cursor-pointer absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm"
         >
           <span className="text-lg leading-none">‹</span>
         </button>
       </header>
 
-      {/* 내용 카드 */}
-      <main className="-mt-10 flex-1 rounded-t-3xl bg-white px-5 pb-8 pt-6 shadow-[0_-6px_20px_rgba(0,0,0,0.04)]">
-        {/* 대회명 */}
+      {/* 내용 영역 */}
+      <main className="flex-1 rounded-full px-5 pb-8 pt-6 flex flex-col">
+        {/* 상단 둥근 구분선(handle) */}
+        <div className="mx-auto mb-4 h-2 w-12 rounded-full bg-black/70" />
+
+        {/* 제목 + 태그 */}
         <h1 className="text-lg font-semibold text-gray-900">
           {competition.name}
         </h1>
 
-        {/* 간단 태그들 (주종목, 세부종목) */}
         <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
           <span className="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">
             {competition.mainEvent}
@@ -72,54 +81,55 @@ export default function CompetitionDetailPage() {
           </span>
         </div>
 
-        {/* 구분선 */}
-        <div className="mt-5 h-px w-full bg-gray-100" />
+        {/* 상세 정보 카드 */}
+        <section className="mt-5 rounded-2xl bg-white/90 p-4 shadow-sm">
+          <div className="space-y-3 text-sm text-gray-800">
+            <div className="border-b border-gray-100 pb-3 last:border-none">
+              <p className="text-[11px] font-medium text-gray-400">대회명</p>
+              <p className="mt-0.5">{competition.name}</p>
+            </div>
 
-        {/* 세부 정보 */}
-        <section className="mt-4 space-y-3 text-sm text-gray-800">
-          <div>
-            <p className="text-[11px] font-medium text-gray-400">대회명</p>
-            <p className="mt-0.5">{competition.name}</p>
-          </div>
+            <div className="border-b border-gray-100 pb-3 last:border-none">
+              <p className="text-[11px] font-medium text-gray-400">기간</p>
+              <p className="mt-0.5">
+                {formatPeriod(competition.startDate, competition.endDate)}
+              </p>
+            </div>
 
-          <div>
-            <p className="text-[11px] font-medium text-gray-400">기간</p>
-            <p className="mt-0.5">
-              {formatPeriod(competition.startDate, competition.endDate)}
-            </p>
-          </div>
+            <div className="border-b border-gray-100 pb-3 last:border-none">
+              <p className="text-[11px] font-medium text-gray-400">주종목명</p>
+              <p className="mt-0.5">{competition.mainEvent}</p>
+            </div>
 
-          <div>
-            <p className="text-[11px] font-medium text-gray-400">주종목명</p>
-            <p className="mt-0.5">{competition.mainEvent}</p>
-          </div>
+            <div className="border-b border-gray-100 pb-3 last:border-none">
+              <p className="text-[11px] font-medium text-gray-400">
+                세부종목명
+              </p>
+              <p className="mt-0.5">{competition.subEvent}</p>
+            </div>
 
-          <div>
-            <p className="text-[11px] font-medium text-gray-400">세부종목명</p>
-            <p className="mt-0.5">{competition.subEvent}</p>
-          </div>
+            <div className="border-b border-gray-100 pb-3 last:border-none">
+              <p className="text-[11px] font-medium text-gray-400">주관</p>
+              <p className="mt-0.5">{competition.organizer}</p>
+            </div>
 
-          <div>
-            <p className="text-[11px] font-medium text-gray-400">주관</p>
-            <p className="mt-0.5">{competition.organizer}</p>
-          </div>
-
-          <div>
-            <p className="text-[11px] font-medium text-gray-400">대회 상세</p>
-            <Link
-              href={competition.officialUrl}
-              target="_blank"
-              className="mt-0.5 inline-flex items-center text-blue-600 underline"
-            >
-              {competition.officialUrl}
-            </Link>
+            <div>
+              <p className="text-[11px] font-medium text-gray-400">대회 상세</p>
+              <Link
+                href={competition.officialUrl}
+                target="_blank"
+                className="mt-0.5 inline-flex items-center text-blue-600 underline"
+              >
+                {competition.officialUrl}
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* 하단 버튼 */}
+        {/* 하단 버튼: 맨 밑에 고정되도록 mt-auto */}
         <button
           type="button"
-          className="mt-8 h-12 w-full rounded-2xl bg-blue-600 text-sm font-semibold text-white shadow-sm"
+          className="mt-auto mb-2 h-12 w-full rounded-2xl bg-black text-sm font-semibold text-white shadow-md"
         >
           대회 신청하러 가기
         </button>
