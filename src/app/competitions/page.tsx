@@ -33,7 +33,7 @@ export default function CompetitionsPage() {
   }, [activeTab, sortKey]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
+    <div className="flex min-h-screen flex-col">
       {/* 상단 헤더 */}
       <header className="relative px-4 pt-4 pb-4">
         {/* 뒤로가기 버튼 - 왼쪽 상단 고정 */}

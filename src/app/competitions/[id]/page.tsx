@@ -29,7 +29,7 @@ export default function CompetitionDetailPage() {
 
   if (!competition) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50">
+      <div className="flex min-h-screen flex-col items-center justify-center">
         <p className="mb-4 text-sm text-gray-500">
           대회 정보를 찾을 수 없어요.
         </p>
@@ -44,7 +44,7 @@ export default function CompetitionDetailPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
+    <div className="flex min-h-screen flex-col ">
       <header className="relative h-40 w-full bg-linear-to-b from-blue-500 to-blue-300 px-4 pt-4">
         <button
           type="button"
