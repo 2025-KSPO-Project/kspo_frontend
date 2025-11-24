@@ -5,13 +5,6 @@ import { useRouter, useParams } from "next/navigation";
 import { facilitiesMock, sportLabel } from "@/constants/facilities";
 import KakaoMap from "@/components/KakaoMap";
 
-// kakao typings
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
-
 export default function FacilityDetailPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
