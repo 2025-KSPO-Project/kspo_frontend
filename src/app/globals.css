@@ -40,8 +40,9 @@ body {
 .app-mobile-shell {
   width: 100%;
   max-width: 430px; /* 모바일 프레임 폭 */
+  border-radius: 40px;
   min-height: 100vh;
-  background: #bbf7d0;
+  background: #ffffff;
   box-shadow: 0 0 24px rgba(15, 23, 42, 0.15); /* 그림자만 살짝 */
   overflow: hidden;
   display: flex;
