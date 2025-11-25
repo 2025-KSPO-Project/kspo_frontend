@@ -35,10 +35,10 @@ export function MainLanding() {
       </section>
 
       {/* 하단 CTA 버튼 */}
-      <footer className="w-full flex flex-col gap-3">
+      <footer className="flex flex-col gap-3">
         <Link
           href="/auth/login"
-          className="block w-full rounded-xl bg-black text-center text-sm font-semibold text-green-300 py-3"
+          className="block w-full rounded-xl bg-green-300 text-center text-sm font-semibold text-black py-3 px-6"
         >
           시작하기
         </Link>
