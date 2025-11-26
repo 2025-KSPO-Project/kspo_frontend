@@ -9,7 +9,7 @@ export default function LoginPage() {
 
   const handleNaverLogin = () => {
     alert("네이버 로그인 연동 예정입니다. 일단 회원가입 화면으로 이동합니다.");
-    router.push("/auth/signup");
+    router.push("/onboarding/init");
   };
 
   const handleSkip = () => {
@@ -37,7 +37,7 @@ export default function LoginPage() {
             src="/images/login-hero.png"
             alt="Carefit Login Illustration"
             fill // 부모 div를 기준으로 꽉 채움
-            className="object-cover" // 위/아래 여백 없이 채우기
+            className="object-center" // 위/아래 여백 없이 채우기
             priority
           />
         </div>
