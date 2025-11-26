@@ -1,19 +1,53 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+
+const ANIMAL_CHARACTERS = [
+  {
+    src: "/images/animal-fox.png",
+    name: "여우",
+    role: "커뮤니티 응원단",
+  },
+  {
+    src: "/images/animal-bear.png",
+    name: "곰",
+    role: "헬스 코치",
+  },
+  {
+    src: "/images/animal-rabbit.png",
+    name: "토끼",
+    role: "심장 건강 지킴이",
+  },
+  {
+    src: "/images/animal-byungari.png",
+    name: "병아리",
+    role: "스트레칭 요정",
+  },
+  {
+    src: "/images/animal-squirrel.png",
+    name: "다람쥐",
+    role: "습관 트래커",
+  },
+  {
+    src: "/images/animal-cat.png",
+    name: "고양이",
+    role: "산책 메이트",
+  },
+];
 
 export function MainLanding() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-linear-to-b px-6 py-10">
       {/* 상단 로고 */}
-      <header className="w-full flex justify-start">
+      <header className="flex w-full justify-start">
         <div className="flex items-center gap-2">
           <span className="text-lg font-semibold text-black/90">Carefit</span>
         </div>
       </header>
 
       {/* 중앙 메인 카피 */}
-      <section className="flex flex-1 flex-col items-center justify-center text-center gap-5">
+      <section className="flex flex-1 flex-col items-center justify-center gap-5 text-center">
         <p className="rounded-full bg-black/80 px-4 py-1 text-xs font-medium text-green-300">
           이동약자도, 운동 초보도
         </p>
@@ -28,9 +62,29 @@ export function MainLanding() {
           나에게 맞는 운동 루틴을 한 번에 관리해 보세요.
         </p>
 
-        {/* 일러스트 영역 */}
-        <div className="mt-4 h-40 w-full max-w-xs rounded-3xl bg-white/70 shadow-md flex items-center justify-center text-xs text-gray-500">
-          여기 운동/케어핏 일러스트 들어갈 예정
+        {/* 6마리 동물 캐릭터 그리드 */}
+        <div className="mt-4 w-full max-w-sm rounded-3xl bg-white/70 p-4 ">
+          <div className="grid grid-cols-3 gap-3">
+            {ANIMAL_CHARACTERS.map((ch) => (
+              <div
+                key={ch.src}
+                className="flex flex-col items-center gap-1 rounded-2xl bg-white/80 px-2 py-2 shadow-sm"
+              >
+                <div className="relative h-16 w-16 overflow-hidden rounded-full bg-emerald-50">
+                  <Image
+                    src={ch.src}
+                    alt={ch.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-[11px] font-semibold text-gray-800">
+                  {ch.name}
+                </span>
+                <span className="text-[10px] text-emerald-600">{ch.role}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -38,11 +92,11 @@ export function MainLanding() {
       <footer className="flex flex-col gap-3">
         <Link
           href="/auth/login"
-          className="block w-full rounded-xl bg-green-300 text-center text-sm font-semibold text-black py-3 px-6"
+          className="block w-full rounded-xl bg-green-300 px-6 py-3 text-center text-sm font-semibold text-black"
         >
           시작하기
         </Link>
-        <p className="text-[11px] text-black text-center">
+        <p className="text-center text-[11px] text-black">
           시작하기를 누르면 서비스 이용약관 및 개인정보처리방침에 동의하게
           됩니다.
         </p>
