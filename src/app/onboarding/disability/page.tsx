@@ -3,25 +3,19 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { OnboardingProgress } from "@/app/onboarding/OnboardingProgress";
-
-const DISABILITY_OPTIONS = [
-  "지체 장애",
-  "시각 장애",
-  "청각 장애",
-  "발달/지적 장애",
-  "뇌병변 장애",
-  "기타",
-];
+import { DISABILITY_TYPES } from "@/constants/disability";
+import { useOnboardingStore } from "@/lib/zustand/onboardingStore";
 
 export default function DisabilityOnboardingPage() {
   const router = useRouter();
-  const [selected, setSelected] = useState<string | null>(null);
+  const { disabilityCode, setDisability } = useOnboardingStore();
+  const [selected, setSelected] = useState<number | null>(disabilityCode);
 
-  const isValid = !!selected;
+  const isValid = selected != null;
 
   const handleNext = () => {
-    if (!isValid) return;
-    // TODO: 선택한 장애 유형 저장
+    if (!isValid || selected == null) return;
+    setDisability(selected);
     router.push("/onboarding/interests");
   };
 
@@ -39,7 +33,7 @@ export default function DisabilityOnboardingPage() {
       </header>
 
       {/* 진행도 */}
-      <OnboardingProgress currentStep={2} totalSteps={3} />
+      <OnboardingProgress currentStep={3} totalSteps={4} />
 
       {/* 타이틀 영역 */}
       <section className="mb-6">
@@ -49,26 +43,28 @@ export default function DisabilityOnboardingPage() {
         </p>
       </section>
 
-      {/* 장애 유형 선택 */}
+      {/* 장애 유형 선택 - 내부 스크롤 영역 */}
       <section className="flex-1">
-        <div className="grid grid-cols-2 gap-3">
-          {DISABILITY_OPTIONS.map((item) => {
-            const active = selected === item;
-            return (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setSelected(item)}
-                className={`h-12 cursor-pointer rounded-xl border text-sm font-medium transition-colors ${
-                  active
-                    ? "border-black-500 bg-blue-50 text-black-600"
-                    : "border-gray-200 bg-white text-gray-700"
-                }`}
-              >
-                {item}
-              </button>
-            );
-          })}
+        <div className="max-h-170 overflow-y-auto pr-1">
+          <div className="grid grid-cols-2 gap-3">
+            {DISABILITY_TYPES.map((item) => {
+              const active = selected === item.code;
+              return (
+                <button
+                  key={item.code}
+                  type="button"
+                  onClick={() => setSelected(item.code)}
+                  className={`h-12 cursor-pointer rounded-xl border text-xs font-medium transition-colors ${
+                    active
+                      ? "border-emerald-500 bg-emerald-200 text-black"
+                      : "border-gray-200 bg-white text-gray-700"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -80,8 +76,8 @@ export default function DisabilityOnboardingPage() {
           onClick={handleNext}
           className={`w-full rounded-xl py-3 text-sm font-semibold ${
             isValid
-              ? "bg-black text-white cursor-pointer"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              ? "bg-emerald-300 text-black cursor-pointer"
+              : "bg-emerald-100 text-emerald-400 cursor-not-allowed"
           }`}
         >
           다음
