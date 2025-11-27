@@ -1,25 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { OnboardingProgress } from "@/app/onboarding/OnboardingProgress";
+import { PROVINCES } from "@/constants/regions";
+import { useOnboardingStore } from "@/lib/zustand/onboardingStore";
 
-export default function SignupPage() {
+export default function InitOnboardingPage() {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [phone, setPhone] = useState("");
+  const { provinceCode, setProvince } = useOnboardingStore();
+  const [selected, setSelected] = useState<string | null>(provinceCode);
 
-  const isValid = name.trim().length > 0 && nickname.trim().length > 0;
+  const isValid = !!selected;
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isValid) return;
-    // TODO: 여기에서 실제 회원가입 API 호출 or Zustand에 임시 저장
-    router.push("/onboarding/location");
+    if (!isValid || !selected) return;
+
+    setProvince(selected);
+    router.push("/onboarding/location"); // 시군구 설정 페이지
   };
 
+  // 시도 바뀔 때마다 store에 바로 반영
+  useEffect(() => {
+    if (selected) setProvince(selected);
+  }, [selected, setProvince]);
+
   return (
-    <main className="flex min-h-screen flex-col px-6 py-8 ">
+    <main className="flex min-h-screen flex-col px-6 py-8">
       {/* 상단 바 */}
       <header className="mb-6 flex items-center justify-between">
         <button
@@ -31,81 +39,59 @@ export default function SignupPage() {
         </button>
       </header>
 
+      {/* 진행도 */}
+      <OnboardingProgress currentStep={1} totalSteps={4} />
+
       {/* 타이틀 */}
       <section className="mb-6">
-        <h1 className="text-xl font-bold text-gray-900">
-          Carefit에 오신 걸 환영해요 👋
-        </h1>
+        <h1 className="text-xl font-bold text-gray-900">시·도 설정</h1>
         <p className="mt-2 text-xs text-gray-500">
-          네이버 계정으로 기본 정보는 가져올 수 있지만,
+          현재 거주하고 계신 시·도를 선택해주세요.
           <br />
-          운동 파트너 추천을 위해 몇 가지만 더 알려주세요.
+          이후 시군구, 장애 유형, 관심 종목 추천에 활용돼요.
         </p>
       </section>
 
-      {/* 폼 */}
+      {/* 시도 선택 */}
       <form onSubmit={handleNext} className="flex flex-1 flex-col gap-4">
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-gray-700">
-              이름 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="실명을 입력해 주세요"
-              className="h-10 rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-black"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+        <section className="flex-1">
+          {/* 내부 스크롤 영역 */}
+          <div className="max-h-170 overflow-y-auto pr-1">
+            <div className="grid grid-cols-2 gap-3">
+              {PROVINCES.map((p) => {
+                const active = selected === p.code;
+                return (
+                  <button
+                    key={p.code}
+                    type="button"
+                    onClick={() => setSelected(p.code)}
+                    className={`h-12 cursor-pointer rounded-xl border text-sm font-medium transition-colors ${
+                      active
+                        ? "border-emerald-500 bg-emerald-200 text-black"
+                        : "border-gray-200 bg-white text-gray-700"
+                    }`}
+                  >
+                    {p.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+        </section>
 
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-gray-700">
-              닉네임 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="운동 파트너에게 보여질 이름"
-              className="h-10 rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-black"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-            />
-            <p className="text-[10px] text-gray-400">
-              예: 축구 좋아하는 재활러, 주 3회 러너 등 자유롭게 작성해 주세요.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-gray-700">
-              연락처 (선택)
-            </label>
-            <input
-              type="tel"
-              placeholder="카풀/동호회 참여 시 연락받을 번호"
-              className="h-10 rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-black"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div>
-        </div>
-
+        {/* 하단 버튼 */}
         <div className="mt-auto flex flex-col gap-3">
           <button
             type="submit"
             disabled={!isValid}
             className={`w-full rounded-xl py-3 text-sm font-semibold ${
               isValid
-                ? "bg-black text-white cursor-pointer"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                ? "bg-emerald-300 text-black cursor-pointer"
+                : "bg-emerald-100 text-emerald-400 cursor-not-allowed"
             }`}
           >
-            다음 (시·도 설정하기)
+            다음
           </button>
-          <p className="text-[10px] text-center text-gray-400">
-            다음 단계에서 거주 지역과 운동 목적을 선택하면,
-            <br />
-            동호회·대회·체육시설 추천을 더 정확하게 받을 수 있어요.
-          </p>
         </div>
       </form>
     </main>
