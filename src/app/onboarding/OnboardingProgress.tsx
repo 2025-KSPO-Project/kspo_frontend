@@ -14,9 +14,9 @@ export function OnboardingProgress({
   return (
     <div className="mb-4">
       {/* 진행 바 */}
-      <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
+      <div className="h-4 w-full rounded-full bg-gray-200 overflow-hidden">
         <div
-          className="h-full rounded-full bg-black transition-[width] duration-300"
+          className="h-full rounded-full bg-green-300 transition-[width] duration-300"
           style={{ width: `${percent}%` }}
         />
       </div>
