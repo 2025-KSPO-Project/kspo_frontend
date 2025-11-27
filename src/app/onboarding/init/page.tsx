@@ -21,13 +21,18 @@ export default function InitOnboardingPage() {
     router.push("/onboarding/location"); // 시군구 설정 페이지
   };
 
-  // 시도 바뀔 때마다 store에 바로 반영
   useEffect(() => {
     if (selected) setProvince(selected);
   }, [selected, setProvince]);
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-8">
+    <main
+      className="
+        flex min-h-screen flex-col 
+        overflow-y-auto               /* 전체 페이지 스크롤 */
+        px-6 py-8
+      "
+    >
       {/* 상단 바 */}
       <header className="mb-6 flex items-center justify-between">
         <button
@@ -55,8 +60,8 @@ export default function InitOnboardingPage() {
       {/* 시도 선택 */}
       <form onSubmit={handleNext} className="flex flex-1 flex-col gap-4">
         <section className="flex-1">
-          {/* 내부 스크롤 영역 */}
-          <div className="max-h-170 overflow-y-auto pr-1">
+          {/* 내부 스크롤 영역: max-h-170 → Tailwind에서 인식되는 값으로 변경 */}
+          <div className="max-h-[260px] overflow-y-auto pr-1">
             <div className="grid grid-cols-2 gap-3">
               {PROVINCES.map((p) => {
                 const active = selected === p.code;
@@ -80,7 +85,7 @@ export default function InitOnboardingPage() {
         </section>
 
         {/* 하단 버튼 */}
-        <div className="mt-auto flex flex-col gap-3">
+        <div className="mt-auto flex flex-col gap-3 pb-2">
           <button
             type="submit"
             disabled={!isValid}

@@ -11,7 +11,7 @@ export default function LocationOnboardingPage() {
   const { provinceCode, districtCode, setDistrict } = useOnboardingStore();
   const [selected, setSelected] = useState<string | null>(districtCode);
 
-  // 시도 선택 없이 직접 진입하는 경우 방어
+  // 시도 선택 없이 직접 진입 방어
   useEffect(() => {
     if (!provinceCode) {
       router.replace("/onboarding/init");
@@ -34,7 +34,7 @@ export default function LocationOnboardingPage() {
   if (!provinceCode) return null;
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-8">
+    <main className="flex min-h-screen flex-col overflow-y-auto px-6 py-8">
       {/* 상단 헤더 */}
       <header className="mb-4 flex items-center justify-between">
         <button
@@ -59,7 +59,7 @@ export default function LocationOnboardingPage() {
 
       {/* 시군구 선택 - 내부 스크롤 영역 */}
       <section className="flex-1">
-        <div className="max-h-170 overflow-y-auto pr-1">
+        <div className="max-h-[260px] overflow-y-auto pr-1">
           <div className="grid grid-cols-2 gap-3">
             {options.map((gu) => {
               const active = selected === gu.code;
@@ -83,7 +83,7 @@ export default function LocationOnboardingPage() {
       </section>
 
       {/* 하단 버튼 */}
-      <footer className="mt-6">
+      <footer className="mt-6 pb-2">
         <button
           type="button"
           disabled={!isValid}

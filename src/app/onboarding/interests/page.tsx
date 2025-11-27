@@ -30,7 +30,7 @@ export default function InterestsOnboardingPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-8">
+    <main className="flex min-h-screen flex-col overflow-y-auto px-6 py-8">
       {/* 상단 헤더 */}
       <header className="mb-4 flex items-center justify-between">
         <button
@@ -58,8 +58,7 @@ export default function InterestsOnboardingPage() {
 
       {/* 관심 종목 선택 (다중 선택) - 내부 스크롤 영역 */}
       <section className="flex-1">
-        {/* 이 div에만 스크롤 생기도록 max-height 지정 */}
-        <div className="max-h-170 overflow-y-auto pr-1">
+        <div className="max-h-[260px] overflow-y-auto pr-1">
           <div className="grid grid-cols-2 gap-3">
             {MAIN_SPORTS.map((item) => {
               const active = selected.includes(item.code);
@@ -83,7 +82,7 @@ export default function InterestsOnboardingPage() {
       </section>
 
       {/* 하단 버튼 */}
-      <footer className="mt-6">
+      <footer className="mt-6 pb-2">
         <button
           type="button"
           disabled={!isValid}

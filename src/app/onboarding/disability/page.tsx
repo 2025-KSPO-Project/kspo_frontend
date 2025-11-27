@@ -20,7 +20,7 @@ export default function DisabilityOnboardingPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-8">
+    <main className="flex min-h-screen flex-col overflow-y-auto px-6 py-8">
       {/* 상단 헤더 */}
       <header className="mb-4 flex items-center justify-between">
         <button
@@ -45,7 +45,7 @@ export default function DisabilityOnboardingPage() {
 
       {/* 장애 유형 선택 - 내부 스크롤 영역 */}
       <section className="flex-1">
-        <div className="max-h-170 overflow-y-auto pr-1">
+        <div className="max-h-[260px] overflow-y-auto pr-1">
           <div className="grid grid-cols-2 gap-3">
             {DISABILITY_TYPES.map((item) => {
               const active = selected === item.code;
@@ -69,7 +69,7 @@ export default function DisabilityOnboardingPage() {
       </section>
 
       {/* 하단 버튼 */}
-      <footer className="mt-6">
+      <footer className="mt-6 pb-2">
         <button
           type="button"
           disabled={!isValid}
