@@ -1,0 +1,40 @@
+export type MainSport = {
+  code: number;
+  name: string;
+};
+
+export const MAIN_SPORTS: MainSport[] = [
+  { code: 1, name: "검도" },
+  { code: 2, name: "골프" },
+  { code: 3, name: "기타종목" },
+  { code: 4, name: "농구" },
+  { code: 6, name: "롤러인라인" },
+  { code: 7, name: "댄스(줌바 등)" },
+  { code: 8, name: "배구" },
+  { code: 9, name: "배드민턴" },
+  { code: 10, name: "볼링" },
+  { code: 11, name: "빙상(스케이트)" },
+  { code: 12, name: "수영" },
+  { code: 13, name: "스쿼시" },
+  { code: 14, name: "에어로빅" },
+  { code: 17, name: "유도" },
+  { code: 20, name: "축구(풋살)" },
+  { code: 21, name: "탁구" },
+  { code: 22, name: "태권도" },
+  { code: 23, name: "테니스" },
+  { code: 25, name: "헬스" },
+  { code: 26, name: "종합체육시설" },
+  { code: 27, name: "줄넘기" },
+  { code: 71, name: "승마" },
+  { code: 73, name: "야구" },
+  { code: 74, name: "펜싱" },
+  { code: 75, name: "합기도" },
+  { code: 76, name: "복싱" },
+  { code: 77, name: "무용(발레 등)" },
+  { code: 78, name: "요가" },
+  { code: 79, name: "필라테스" },
+  { code: 109, name: "크로스핏" },
+  { code: 110, name: "주짓수" },
+  { code: 111, name: "클라이밍(암벽등반)" },
+  { code: 112, name: "당구" },
+];
