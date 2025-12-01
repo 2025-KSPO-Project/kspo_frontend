@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { setDummyLogin } from "@/hooks/useAuth";
 import Image from "next/image";
+import { setDummyUserName } from "@/hooks/useUser";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function LoginPage() {
 
   const handleSkip = () => {
     setDummyLogin(true);
+    setDummyUserName("홍길동");
     router.push("/home");
   };
 
