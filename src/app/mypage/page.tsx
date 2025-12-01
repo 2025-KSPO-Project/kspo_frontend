@@ -24,14 +24,14 @@ export default function MyPage() {
     <div className="flex min-h-screen flex-col bg-gray-50">
       {/* 1. 상단 헤더 및 인사 문구 (CompetitionsPage 스타일 차용) */}
       <header className="relative bg-white px-4 pt-8 pb-6 shadow-sm">
-        {/* 뒤로가기 버튼 - 왼쪽 상단 (CompetitionsPage에는 있었으나 MyPage에서는 필요 없을 수 있음. 일단 주석 처리) */}
-        {/* <button
+        {/* 뒤로가기 버튼 - 왼쪽 상단*/}
+        <button
           type="button"
           onClick={() => router.back()}
           className="cursor-pointer absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md"
         >
           <span className="text-lg leading-none">‹</span>
-        </button> */}
+        </button>
 
         {/* 중앙 인사 문구 */}
         <div className="flex flex-col items-center text-center">
