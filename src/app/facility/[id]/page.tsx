@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { facilitiesMock, sportLabel } from "@/constants/facilities";
-import KakaoMap from "@/components/KakaoMap";
 
 export default function FacilityDetailPage() {
   const router = useRouter();
@@ -40,9 +39,6 @@ export default function FacilityDetailPage() {
     <div className="flex min-h-screen flex-col">
       {/* 지도 영역 */}
       <header className="relative h-64 w-full overflow-hidden">
-        {/* 실제 Kakao Map */}
-        <KakaoMap lat={selected.lat} lng={selected.lng} />
-
         {/* 목업 마커 클릭 이벤트 (지금도 유지) */}
         {facilitiesMock.map((f, index) => {
           const top = 20 + index * 12;
