@@ -43,6 +43,7 @@ export function MainLanding() {
                     src={ch.src}
                     alt={ch.name}
                     fill
+                    sizes="100px"
                     className="object-contain"
                   />
                 </div>
