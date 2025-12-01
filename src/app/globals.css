@@ -38,8 +38,9 @@ body {
 
 /* 실제 모바일 웹앱 프레임 */
 .app-mobile-shell {
-  width: 100%;
-  max-width: 430px; /* 모바일 프레임 폭 */
+  /* 작은 화면(모바일)에서 크기 조정을 위한 핵심 속성 */
+  width: min(440px, 90vw); /* 440px와 90vw 중 작은 값을 사용 */
+  height: min(880px, 90vh); /* 880px와 90vh 중 작은 값을 사용 */
   border-radius: 40px;
   min-height: 100vh;
   background: #ffffff;

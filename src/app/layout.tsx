@@ -25,16 +25,14 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div className="app-mobile-shell">
-          <QueryProvider>
-            <SWRProvider>
-              <div className="flex min-h-screen flex-col">
-                <main className="flex-1">{children}</main>
-                <BottomNavigator />
-              </div>
-            </SWRProvider>
-          </QueryProvider>
-        </div>
+        <QueryProvider>
+          <SWRProvider>
+            <div className="app-mobile-shell">
+              {children}
+              <BottomNavigator />
+            </div>
+          </SWRProvider>
+        </QueryProvider>
       </body>
     </html>
   );
