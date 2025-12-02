@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import { useUser } from "@/hooks/useUser";
-import { useRouter } from "next/navigation"; // useRouter 추가 (뒤로가기 버튼 사용 시)
+import { useRouter } from "next/navigation";
 
 export default function MyPage() {
+  // 가상의 이메일 데이터 
+  const userEmail = "example@naver.com"; 
+    
   const { name, hydrated } = useUser();
-  const router = useRouter(); // useRouter 초기화
+  const router = useRouter();
 
   // 로딩 중이면 잠깐 숨김
-  if (!hydrated) return null; 
+  if (!hydrated) return null;
 
   const userName = name ?? "케어핏";
 
@@ -20,9 +23,12 @@ export default function MyPage() {
     { href: "/carpool/history", icon: "🚗", label: "카풀 이용 내역", color: "text-gray-900" },
   ];
 
+  // 이메일 도메인 체크 (예시: 네이버만 N 로고 표시)
+  const isNaverEmail = userEmail.endsWith('@naver.com');
+
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
-      {/* 1. 상단 헤더 및 인사 문구 (CompetitionsPage 스타일 차용) */}
+      {/* 1. 상단 헤더 및 인사 문구 (수정된 디자인 적용) */}
       <header className="relative bg-white px-4 pt-8 pb-6 shadow-sm">
         {/* 뒤로가기 버튼 - 왼쪽 상단*/}
         <button
@@ -36,15 +42,29 @@ export default function MyPage() {
         {/* 중앙 인사 문구 */}
         <div className="flex flex-col items-center text-center">
           <p className="text-xs text-gray-400">마이페이지</p>
+          
+          {/* 닉네임 + 이메일 */}
           <h1 className="mt-2 text-xl font-semibold text-gray-900">
             안녕하세요! {userName}님 👋
           </h1>
+          
+          {/* 이메일과 네이버 로고 */}
+          <div className="mt-1 flex items-center gap-1.5 text-xs text-gray-500">
+            <span>{userEmail}</span>
+            {isNaverEmail && (
+              <span className="flex h-5 w-5 items-center justify-center rounded bg-white/90 text-xs font-bold text-[#03C75A] shadow-sm">
+                N
+              </span>
+            )}
+          </div>
+          
+          {/* 하단 응원 메시지 */}
           <p className="mt-1 text-[13px] text-gray-500">
             {userName}님의 건강한 루틴을 응원해요!
           </p>
         </div>
 
-        {/* 프로필 서클 재배치 (옵션: 헤더 하단에 배치) */}
+        {/* 프로필 서클 재배치 */}
         <section className="mt-6 flex justify-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-500 text-2xl font-bold text-white shadow-lg">
             {userName.slice(0, 1)}
@@ -52,7 +72,7 @@ export default function MyPage() {
         </section>
       </header>
 
-      {/* 2. 메뉴 섹션 (CompetitionsPage의 탭/필터 버튼 스타일 적용) */}
+      {/* 2. 메뉴 섹션 (기존 스타일 유지) */}
       <main className="flex-1 space-y-3 px-4 pt-6 pb-24">
         {menuItems.map((item) => (
           <Link
