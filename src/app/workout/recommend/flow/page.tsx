@@ -246,7 +246,7 @@ export default function WorkoutRecommendFlowPage() {
 
             <button
               type="button"
-              onClick={() => router.push("/workout/checklist/pre")}
+              onClick={() => router.push("/workout/checklist")}
               className="cursor-pointer mt-auto w-full rounded-2xl bg-black py-3 text-sm font-semibold text-white"
             >
               운동시작하기
