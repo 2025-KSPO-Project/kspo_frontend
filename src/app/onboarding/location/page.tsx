@@ -59,7 +59,7 @@ export default function LocationOnboardingPage() {
 
       {/* 시군구 선택 - 내부 스크롤 영역 */}
       <section className="flex-1">
-        <div className="max-h-[260px] overflow-y-auto pr-1">
+        <div className="max-h-[560px] overflow-y-auto pr-1">
           <div className="grid grid-cols-2 gap-3">
             {options.map((gu) => {
               const active = selected === gu.code;

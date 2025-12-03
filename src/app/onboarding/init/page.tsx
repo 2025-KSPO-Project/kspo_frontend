@@ -60,8 +60,8 @@ export default function InitOnboardingPage() {
       {/* 시도 선택 */}
       <form onSubmit={handleNext} className="flex flex-1 flex-col gap-4">
         <section className="flex-1">
-          {/* 내부 스크롤 영역: max-h-170 → Tailwind에서 인식되는 값으로 변경 */}
-          <div className="max-h-[260px] overflow-y-auto pr-1">
+          {/* 내부 스크롤 영역: max-h-560 → Tailwind에서 인식되는 값으로 변경 */}
+          <div className="max-h-[560px] overflow-y-auto pr-1">
             <div className="grid grid-cols-2 gap-3">
               {PROVINCES.map((p) => {
                 const active = selected === p.code;

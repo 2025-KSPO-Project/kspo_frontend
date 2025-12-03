@@ -58,7 +58,7 @@ export default function InterestsOnboardingPage() {
 
       {/* 관심 종목 선택 (다중 선택) - 내부 스크롤 영역 */}
       <section className="flex-1">
-        <div className="max-h-[260px] overflow-y-auto pr-1">
+        <div className="max-h-[560px] overflow-y-auto pr-1">
           <div className="grid grid-cols-2 gap-3">
             {MAIN_SPORTS.map((item) => {
               const active = selected.includes(item.code);
