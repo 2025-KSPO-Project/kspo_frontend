@@ -38,7 +38,7 @@ export default function WorkoutRecommendIntroPage() {
         <div>
           <p className="mb-8 text-center text-sm text-gray-800">
             오늘 진행할 운동을 <span className="font-semibold">{userName}</span>
-            님의 컨디션과 상황에 맞게 케어핏에서 추천해요!
+            님의 컨디션과 상황에 맞게 추천해요!
           </p>
         </div>
         <div>
