@@ -2,10 +2,33 @@
 
 import Link from "next/link";
 import { useUser } from "@/hooks/useUser";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function WorkoutMainPage() {
+  const router = useRouter();
   const { name } = useUser();
   const userName = name ?? "케어핏";
+  const [showBadge, setShowBadge] = useState(false);
+
+  const BADGE_KEY_PREFIX = "carefit_todayBadge_done_";
+
+  function getTodayKey() {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = `${today.getMonth() + 1}`.padStart(2, "0");
+    const d = `${today.getDate()}`.padStart(2, "0");
+    return `${BADGE_KEY_PREFIX}${y}-${m}-${d}`;
+  }
+
+  // 오늘 운동증 완료 여부 로컬스토리지에서 읽기
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const key = getTodayKey();
+    const value = window.localStorage.getItem(key);
+    // 저장된 값이 없으면 오늘의 운동증 표시
+    setShowBadge(value !== "done");
+  }, []);
 
   return (
     <div className="relative ">
@@ -15,15 +38,39 @@ export default function WorkoutMainPage() {
 
       {/* 실제 콘텐츠 */}
       <div className="relative px-5 pt-10">
-        {/* 상단 헤더 (로고 + 사용자명) */}
-        <header className="mb-6 flex items-center justify-between">
+        {/* 상단 헤더 */}
+        <header className="flex items-start justify-between">
+          {/* 뒤로가기 버튼 - 왼쪽 상단 고정 */}
           <div>
-            <h1 className="text-2xl font-extrabold tracking-tight text-black">
-              Carefit
-            </h1>
-            <h1 className="mt-2 text-lg text-black-50">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="cursor-pointer absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm"
+            >
+              <span className="text-lg leading-none">‹</span>
+            </button>
+          </div>
+
+          {/* 중앙 인사 문구 */}
+          <div className="flex flex-col items-center text-center">
+            <h1 className="mt-1 text-lg font-bold text-gray-900">Carefit</h1>
+            <p className="mt-1 text-[12px] text-gray-500">
               {userName}님을 위한 운동 파트너
-            </h1>
+            </p>
+          </div>
+
+          {/* 오른쪽 상단 오늘의 운동증 동그란 컴포넌트 */}
+          <div>
+            {showBadge && (
+              <button
+                type="button"
+                onClick={() => router.push("/workout/badge")}
+                className="cursor-pointer mt-0 flex h-20 w-20 flex-col items-center justify-center rounded-full border border-gray-300 bg-white text-center text-[11px] font-medium text-gray-800 shadow-sm"
+              >
+                <span>오늘의</span>
+                <span>운동증</span>
+              </button>
+            )}
           </div>
         </header>
 
