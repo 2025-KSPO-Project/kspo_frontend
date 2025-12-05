@@ -4,13 +4,15 @@ import { useRouter } from "next/navigation";
 import { setDummyLogin } from "@/hooks/useAuth";
 import Image from "next/image";
 import { setDummyUserName } from "@/hooks/useUser";
+import { getNaverLoginUrl } from "@/lib/utils/authUrl/getNaverLoginUrl"
 
 export default function LoginPage() {
   const router = useRouter();
 
   const handleNaverLogin = () => {
-    alert("네이버 로그인 연동 예정입니다. 일단 회원가입 화면으로 이동합니다.");
-    router.push("/onboarding/init");
+    // alert 제거 및 실제 OAuth 인증 URL로 리디렉션
+    const naverAuthUrl = getNaverLoginUrl();
+    window.location.href = naverAuthUrl; // 브라우저 레벨에서 리디렉션
   };
 
   const handleSkip = () => {
@@ -48,7 +50,7 @@ export default function LoginPage() {
       {/* 하단 버튼 영역 - 이미지 바로 아래에 붙음 */}
       <footer className="flex flex-col items-center gap-3 pb-4">
         <div className="flex w-full max-w-[300px] flex-col gap-2">
-          {/* 네이버 로그인 */}
+          {/* 네이버 로그인 버튼은 handleNaverLogin 함수 호출 */}
           <button
             type="button"
             onClick={handleNaverLogin}
