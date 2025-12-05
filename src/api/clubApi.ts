@@ -1,5 +1,5 @@
 import { getJSON } from "@/api/axios"; 
-import { ClubData, ClubListResponse } from "@/types/clubs";
+import { ClubListResponse } from "@/types/clubs";
 
 export const fetchClubs = async (page: number, size: number): Promise<ClubListResponse> => {
     const url = `/clubs/list/local`;

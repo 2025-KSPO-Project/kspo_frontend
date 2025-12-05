@@ -52,7 +52,7 @@ export default function Pagination({
         const pages: number[] = [];
         
         let startPage = Math.max(0, currentPage - Math.floor(maxVisiblePages / 2));
-        let endPage = Math.min(safeTotalPages - 1, startPage + maxVisiblePages - 1);
+        const endPage = Math.min(safeTotalPages - 1, startPage + maxVisiblePages - 1);
 
         if (endPage - startPage < maxVisiblePages - 1) {
             startPage = Math.max(0, endPage - maxVisiblePages + 1);
