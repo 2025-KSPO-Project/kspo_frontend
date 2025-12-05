@@ -1,11 +1,9 @@
 "use client";
 
 import { HomeCard } from "@/components/HomeCard";
-import { useUser } from "@/hooks/useUser";
 import { useAuthStore } from "@/lib/zustand/useAuthStore";
 
 export default function HomePage() {
-  // const { name } = useUser();
   const user = useAuthStore(state => state.user);
 
   return (

@@ -3605,6 +3605,7 @@ __metadata:
     axios: "npm:^1.13.2"
     eslint: "npm:^9.38.0"
     eslint-config-next: "npm:^15.5.6"
+    lucide-react: "npm:^0.555.0"
     next: "npm:15.5.6"
     postcss: "npm:^8.5.6"
     prettier: "npm:^3.6.2"
@@ -3802,6 +3803,15 @@ __metadata:
   version: 10.4.3
   resolution: "lru-cache@npm:10.4.3"
   checksum: 10c0/ebd04fbca961e6c1d6c0af3799adcc966a1babe798f685bb84e6599266599cd95d94630b10262f5424539bc4640107e8a33aa28585374abf561d30d16f4b39fb
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.555.0":
+  version: 0.555.0
+  resolution: "lucide-react@npm:0.555.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/18f0870307fe2a37cf62473de88845a78107295de1efcf599a8662be3af4239c0b661a57f8e29815e424773e4aad04d199ad4d94d7ae977b7ce7a61be7f64e04
   languageName: node
   linkType: hard
 

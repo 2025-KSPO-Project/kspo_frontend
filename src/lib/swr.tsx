@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { SWRConfig } from "swr";
-import { api } from "./axios";
+import { api } from "@/api/axios";
 
 interface Props {
   children: ReactNode;
