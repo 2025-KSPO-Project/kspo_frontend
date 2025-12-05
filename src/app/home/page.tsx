@@ -2,10 +2,11 @@
 
 import { HomeCard } from "@/components/HomeCard";
 import { useUser } from "@/hooks/useUser";
+import { useAuthStore } from "@/lib/zustand/useAuthStore";
 
 export default function HomePage() {
-  const { name } = useUser();
-  const userName = name ?? "케어핏";
+  // const { name } = useUser();
+  const user = useAuthStore(state => state.user);
 
   return (
     <div className="relative ">
@@ -22,7 +23,7 @@ export default function HomePage() {
               Carefit
             </h1>
             <p className="mt-2 text-xs text-black-50">
-              {userName}님을 위한 추천 운동 라이프
+              {user?.name}님을 위한 추천 운동 라이프
             </p>
           </div>
         </header>

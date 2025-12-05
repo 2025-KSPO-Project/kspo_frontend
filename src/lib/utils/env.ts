@@ -1,6 +1,6 @@
 export const env = {
   API_BASE_URL:
-    process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://api.example.com",
+    process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://54.180.125.38:8080",
   GOOGLE_MAPS_API_KEY:
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? "DUMMY_GOOGLE_KEY",
   KAKAO_MAPS_API_KEY:
